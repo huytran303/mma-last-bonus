@@ -336,7 +336,6 @@ const styles = StyleSheet.create({
   },
   regenText: { color: '#2563eb', fontWeight: '600' },
 
-  map: { width: '100%', height: 200, borderRadius: 14 },
   coordText: { fontSize: 12, color: '#94a3b8', marginTop: 6 },
   time: { fontSize: 12, color: '#94a3b8', paddingHorizontal: 20, paddingTop: 20 },
 });
