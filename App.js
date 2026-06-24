@@ -16,11 +16,11 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
-import MapView, { Marker } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
 
 import { loadPhotos, savePhotos } from './storage';
 import { generateDescription } from './gemini';
+import MapPreview from './MapPreview';
 
 const { width } = Dimensions.get('window');
 const GAP = 8;
@@ -236,25 +236,7 @@ export default function App() {
                     {selected.address ? (
                       <Text style={styles.addr}>{selected.address}</Text>
                     ) : null}
-                    <MapView
-                      style={styles.map}
-                      provider={Platform.OS === 'android' ? 'google' : undefined}
-                      initialRegion={{
-                        latitude: selected.coords.lat,
-                        longitude: selected.coords.lng,
-                        latitudeDelta: 0.01,
-                        longitudeDelta: 0.01,
-                      }}
-                    >
-                      <Marker
-                        coordinate={{
-                          latitude: selected.coords.lat,
-                          longitude: selected.coords.lng,
-                        }}
-                        title="Nơi chụp ảnh"
-                        description={selected.address || ''}
-                      />
-                    </MapView>
+                    <MapPreview coords={selected.coords} address={selected.address} />
                     <Text style={styles.coordText}>
                       {selected.coords.lat.toFixed(5)}, {selected.coords.lng.toFixed(5)}
                     </Text>
